@@ -64,7 +64,6 @@ Real-world data is chaotic, and this project was no exception. Here’s how I tr
 #### Clone the Repo:
 ```bash
 git clone [your-repo-link]
-cd system-threat-forecaster
 ```
 
 #### Run the Notebook:
