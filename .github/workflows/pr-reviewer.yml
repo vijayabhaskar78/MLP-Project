@@ -14,7 +14,6 @@ on:
 jobs:
   review:
     runs-on: ubuntu-latest
-    
     steps:
       - name: Check required secrets
         run: |
@@ -22,7 +21,9 @@ jobs:
             echo "Error: LLM_API_KEY secret is not configured"
             exit 1
           fi
-      
+
+      # Prefer pinning to a digest you just pushed
+      # uses: docker://ghcr.io/vijayabhaskar78/pr-reviewer@sha256:YOUR_DIGEST
       - name: Run PR Reviewer
         uses: docker://ghcr.io/vijayabhaskar78/pr-reviewer:latest
         env:
