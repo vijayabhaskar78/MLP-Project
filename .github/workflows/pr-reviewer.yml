@@ -2,7 +2,6 @@ name: PR Reviewer
 
 # Triggers for automatic review
 on:
-  workflow_dispatch:
   pull_request_target:
     types: [opened, synchronize, reopened]
   pull_request_review_comment:
@@ -26,10 +25,9 @@ jobs:
     
     steps:
       - name: Run PR Reviewer
-        run: echo "PR Reviewer running..."
+        run: python src/main.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
           LLM_MODEL: ${{ secrets.LLM_MODEL }}
           LLM_PROVIDER: ${{ secrets.LLM_PROVIDER }}
-
