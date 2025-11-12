@@ -21,7 +21,7 @@ jobs:
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-      options: --volume=""  # 👈 disables automatic repo mount so /app is visible
+      options: --volume=""   # disables repository mount
 
     steps:
       - name: Run PR Reviewer
