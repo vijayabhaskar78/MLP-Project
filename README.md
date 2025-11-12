@@ -81,10 +81,13 @@ cd system-threat-forecaster
 #### Check Output:
 - Locate `submission.csv` in the working directory.
 
-### What’s Next?
-- **Feature Boost:** Explore advanced feature engineering, like interaction terms.
+### What's Next?
+- **Feature Boost:** Explore advanced feature engineering, like interaction terms and polynomial features.
 - **Model Ensemble:** Blend CatBoost with XGBoost or LightGBM for a performance lift.
 - **Explainability:** Use SHAP to analyze feature importance and uncover malware predictors.
+- **Cross-Validation:** Implement k-fold cross-validation for more robust model evaluation.
+- **Hyperparameter Optimization:** Try Optuna or Grid Search for better parameter tuning.
+- **Deployment:** Build a REST API using Flask or FastAPI for real-time predictions.
 
 ### Why This Matters
 This project is more than code—it's a stride toward secure systems. I've sharpened my skills in data wrangling, feature engineering, and model optimization while addressing a pressing real-world issue. Recruiters, heads up: I'm primed to bring this analytical prowess to your team!
