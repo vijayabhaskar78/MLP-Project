@@ -18,8 +18,13 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     steps:
+      - name: Debug Container Paths (Optional - Remove after testing)
+        run: |
+          echo "Working directory: $(pwd)"
+          ls -la /app  # List contents of /app to confirm structure
+          find /app -name main.py  # Locate the exact script path
       - name: Run PR Reviewer
-        run: python /app/src/main.py  # Absolute path to container's script
+        run: python /app/src/main.py  # <-- Critical fix: Absolute path inside container
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
