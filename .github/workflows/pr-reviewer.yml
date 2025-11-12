@@ -1,32 +1,39 @@
 name: PR Reviewer
-
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+  pull_request_review_comment:
+    types: [created]
 permissions:
   contents: read
   pull-requests: write
   issues: write
-
-on:
-  pull_request_target:
-    types: [opened, synchronize]
-  pull_request_review_comment:
-    types: [created]
-
+  packages: read
 jobs:
   review:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Check required secrets
-        run: |
-          if [ -z "${{ secrets.LLM_API_KEY }}" ]; then
-            echo "Error: LLM_API_KEY secret is not configured"
-            exit 1
-          fi
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       
-      - name: Run PR Reviewer
-        uses: docker://ghcr.io/vijayabhaskar78/pr-reviewer:latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
-          LLM_MODEL: ${{ secrets.LLM_MODEL }}
-          LLM_PROVIDER: ${{ secrets.LLM_PROVIDER }}
+      - name: Login to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      
+      - name: Pull Docker Image
+        run: docker pull ghcr.io/vijayabhaskar78/pr-reviewer:latest
+      
+      - name: Run PR Reviewer in Container
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/workspace \
+            -w /workspace \
+            -e GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} \
+            -e LLM_API_KEY=${{ secrets.LLM_API_KEY }} \
+            -e LLM_MODEL=${{ secrets.LLM_MODEL }} \
+            -e LLM_PROVIDER=${{ secrets.LLM_PROVIDER }} \
+            -e GITHUB_REPOSITORY=${{ github.repository }} \
+            -e GITHUB_EVENT_NAME=${{ github.event_name }} \
+            ghcr.io/vijayabhaskar78/pr-reviewer:latest \
+            python /workspace/src/main.py
