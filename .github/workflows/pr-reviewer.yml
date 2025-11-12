@@ -1,6 +1,5 @@
 name: PR Reviewer
 
-# Triggers for automatic review
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
@@ -16,16 +15,17 @@ permissions:
 jobs:
   review:
     runs-on: ubuntu-latest
-    
+
     container:
       image: ghcr.io/vijayabhaskar78/pr-reviewer:latest
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-    
+      options: --workdir /app  # 👈 Ensures it runs inside /app even before step
+
     steps:
       - name: Run PR Reviewer
-        run: python /app/src/main.py
+        run: python src/main.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
