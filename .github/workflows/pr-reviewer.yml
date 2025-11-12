@@ -1,5 +1,6 @@
 name: PR Reviewer
 
+# Triggers for automatic review
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
@@ -24,6 +25,7 @@ jobs:
     
     steps:
       - name: Run PR Reviewer
+        run: echo "PR Reviewer running..."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
