@@ -13,3 +13,4 @@ jobs:
       - uses: vijayabhaskar78/pr-reviewer@v1.0
         with:
           groq-key: ${{ secrets.GROQ_API_KEY }}
+          model: llama-3.3-70b-versatile
