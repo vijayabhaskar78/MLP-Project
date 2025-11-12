@@ -1,68 +1,35 @@
-name: PR Reviewername: PR Reviewer
+name: PR Reviewer
 
+# Triggers for automatic review
+on:
+  workflow_dispatch:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+  pull_request_review_comment:
+    types: [created]
 
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+  packages: read
 
-# Triggers for automatic review# Triggers for automatic review
-
-on:on:
-
-  workflow_dispatch:  workflow_dispatch:
-
-  pull_request_target:  pull_request_target:
-
-    types: [opened, synchronize, reopened]    types: [opened, synchronize, reopened]
-
-  pull_request_review_comment:  pull_request_review_comment:
-
-    types: [created]    types: [created]
-
-
-
-permissions:permissions:
-
-  contents: read  contents: read
-
-  pull-requests: write  pull-requests: write
-
-  issues: write  issues: write
-
-  packages: read  packages: read
-
-
-
-jobs:jobs:
-
-  review:  review:
-
-    runs-on: ubuntu-latest    runs-on: ubuntu-latest
-
-        
-
-    container:    container:
-
-      image: ghcr.io/vijayabhaskar78/pr-reviewer:latest      image: ghcr.io/vijayabhaskar78/pr-reviewer:latest
-
-      credentials:      credentials:
-
-        username: ${{ github.actor }}        username: ${{ github.actor }}
-
-        password: ${{ secrets.GITHUB_TOKEN }}        password: ${{ secrets.GITHUB_TOKEN }}
-
-        
-
-    steps:    steps:
-
-      - name: Run PR Reviewer      - name: Run PR Reviewer
-
-        run: echo "PR Reviewer running..."        run: echo "PR Reviewer running..."
-
-        env:        env:
-
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
-
-          LLM_MODEL: ${{ secrets.LLM_MODEL }}          LLM_MODEL: ${{ secrets.LLM_MODEL }}
-
-          LLM_PROVIDER: ${{ secrets.LLM_PROVIDER }}          LLM_PROVIDER: ${{ secrets.LLM_PROVIDER }}
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    
+    container:
+      image: ghcr.io/vijayabhaskar78/pr-reviewer:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    
+    steps:
+      - name: Run PR Reviewer
+        run: echo "PR Reviewer running..."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
+          LLM_PROVIDER: ${{ secrets.LLM_PROVIDER }}
 
