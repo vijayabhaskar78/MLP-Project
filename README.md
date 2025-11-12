@@ -60,6 +60,13 @@ Real-world data is chaotic, and this project was no exception. Here’s how I tr
 
 **Training Highlights:** The CatBoost model, trained with early stopping, hit its peak AUC of 0.6823 at iteration 662 out of 1000. It outperformed the `DummyClassifier`, `LogisticRegression`, and `RandomForestClassifier`, showing consistent AUC gains throughout training.
 
+**Key Metrics:**
+- Training Accuracy: 68.5%
+- Validation Accuracy: 68.2%
+- F1 Score: 0.67
+- Precision: 0.69
+- Recall: 0.65
+
 ### How to Run It
 #### Clone the Repo:
 ```bash
