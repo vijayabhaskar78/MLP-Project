@@ -18,15 +18,19 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      
       - name: Debug Container Paths (Optional)
         run: |
           echo "Working directory: $(pwd)"
-          ls -la /app
-          ls -la /github/workspace/src
-          find /app -name main.py
-          find /github/workspace -name main.py
+          ls -la
+          ls -la src/
+      
       - name: Run PR Reviewer
-        run: python /github/workspace/src/main.py
+        run: python src/main.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
