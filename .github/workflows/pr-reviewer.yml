@@ -12,27 +12,23 @@ permissions:
 jobs:
   review:
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/vijayabhaskar78/pr-reviewer:latest
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       
-      - name: Debug Container Paths (Optional)
+      - name: Run PR Reviewer in Container
         run: |
-          echo "Working directory: $(pwd)"
-          ls -la
-          ls -la src/
-      
-      - name: Run PR Reviewer
-        run: python src/main.py
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
-          LLM_MODEL: ${{ secrets.LLM_MODEL }}
-          LLM_PROVIDER: ${{ secrets.LLM_PROVIDER }}
+          docker run --rm \
+            -v ${{ github.workspace }}:/workspace \
+            -w /workspace \
+            -e GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} \
+            -e LLM_API_KEY=${{ secrets.LLM_API_KEY }} \
+            -e LLM_MODEL=${{ secrets.LLM_MODEL }} \
+            -e LLM_PROVIDER=${{ secrets.LLM_PROVIDER }} \
+            -e GITHUB_REPOSITORY=${{ github.repository }} \
+            -e GITHUB_EVENT_NAME=${{ github.event_name }} \
+            -e GITHUB_EVENT_PATH=/github/workflow/event.json \
+            ghcr.io/vijayabhaskar78/pr-reviewer:latest \
+            python /workspace/src/main.py
