@@ -1,31 +1,26 @@
 name: PR Reviewer
-
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
   pull_request_review_comment:
     types: [created]
-
 permissions:
   contents: read
   pull-requests: write
   issues: write
   packages: read
-
 jobs:
   review:
     runs-on: ubuntu-latest
-
     container:
       image: ghcr.io/vijayabhaskar78/pr-reviewer:latest
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-      # You may keep or remove options: --volume=""
-
+      # Optional: Add volumes if needed for custom mounts (e.g., --volume="/host/path:/container/path")
     steps:
       - name: Run PR Reviewer
-        run: python /app/src/main.py
+        run: python /app/src/main.py  # <-- Key change: Absolute path to container's script
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
