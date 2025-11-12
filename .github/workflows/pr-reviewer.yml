@@ -1,7 +1,7 @@
 name: PR Reviewer
 on:
   pull_request_target:
-    types: [opened, reopened]  # Removed synchronize to reduce repeats
+    types: [opened, reopened]  # Skip synchronize to reduce repeats
   pull_request_review_comment:
     types: [created]
 permissions:
@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     concurrency:
       group: pr-review-${{ github.event.pull_request.number }}
-      cancel-in-progress: true
+      cancel-in-progress: true  # Cancel duplicates
     container:
       image: ghcr.io/vijayabhaskar78/pr-reviewer:latest
       credentials:
@@ -28,7 +28,6 @@ jobs:
           echo "Ref: $GITHUB_REF"
           echo "Head Ref: $GITHUB_HEAD_REF"
           echo "Ref Name: $GITHUB_REF_NAME"
-          echo "Action Path: $GITHUB_ACTION_PATH"
           echo "Workspace: $GITHUB_WORKSPACE"
       - name: Debug Container Paths
         run: |
@@ -37,7 +36,7 @@ jobs:
           find / -name main.py 2>/dev/null
           echo "Python Path: $PYTHONPATH"
       - name: Run PR Reviewer
-        run: python /app/src/main.py
+        run: python /app/src/main.py  # Correct absolute path
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
