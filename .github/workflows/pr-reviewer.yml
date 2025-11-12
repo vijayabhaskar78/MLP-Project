@@ -21,11 +21,11 @@ jobs:
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-      options: --workdir /app  # 👈 ensures all commands run inside /app
+      options: --volume=""  # 👈 disables automatic repo mount so /app is visible
 
     steps:
-      - name: Run PR Reviewer (from container image)
-        run: python src/main.py
+      - name: Run PR Reviewer
+        run: python /app/src/main.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
