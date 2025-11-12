@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: vijayabhaskar78/pr-reviewer
-          ref: v2.1
+          ref: v2.21
           path: .pr-reviewer
       - uses: actions/setup-python@v5
         with:
