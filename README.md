@@ -60,11 +60,19 @@ Real-world data is chaotic, and this project was no exception. Here’s how I tr
 
 **Training Highlights:** The CatBoost model, trained with early stopping, hit its peak AUC of 0.6823 at iteration 662 out of 1000. It outperformed the `DummyClassifier`, `LogisticRegression`, and `RandomForestClassifier`, showing consistent AUC gains throughout training.
 
+### Technologies Used
+- **Python:** Core programming language
+- **Pandas & NumPy:** Data manipulation and numerical operations
+- **Scikit-learn:** Machine learning algorithms and preprocessing
+- **CatBoost:** Gradient boosting for classification
+- **Seaborn & Matplotlib:** Data visualization
+- **Jupyter Notebook:** Interactive development environment
+
 ### How to Run It
 #### Clone the Repo:
 ```bash
-git clone [your-repo-link]
-cd system-threat-forecaster
+git clone https://github.com/vijayabhaskar78/MLP-Project.git
+cd MLP-Project
 ```
 
 #### Run the Notebook:
