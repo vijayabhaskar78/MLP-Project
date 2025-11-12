@@ -2,7 +2,32 @@
 ### Can You Forewarn a System Before It’s Compromised?
 
 ### Overview
-Welcome to the System Threat Forecaster, a Machine Learning Project (MLP T12025) from my BS Degree at IIT Madras. This project tackles the critical challenge of predicting whether a system will succumb to malware infections. Using telemetry data from antivirus software, I developed a model to forecast infection probabilities based on system properties. It’s an exciting fusion of data science and cybersecurity—ideal for anyone eager to safeguard digital landscapes!
+Welcome to the System Threat Forecaster, a Machine Learning Project (MLP T12025) from my BS Degree at IIT Madras. This project tackles the critical challenge of predicting whether a system will succumb to malware infections. Using telemetry data from antivirus software, I developed a model to forecast infection probabilities based on system properties. It's an exciting fusion of data science and cybersecurity—ideal for anyone eager to safeguard digital landscapes!
+
+### Prerequisites
+Before you begin, ensure you have the following installed:
+- **Python 3.8+**
+- **pip** (Python package manager)
+- **Jupyter Notebook** or **JupyterLab**
+
+### Installation
+Follow these steps to set up the project locally:
+
+```bash
+# Clone the repository
+git clone https://github.com/vijayabhaskar78/MLP-Project.git
+cd MLP-Project
+
+# Create a virtual environment (recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install required dependencies
+pip install pandas numpy scikit-learn catboost seaborn matplotlib jupyter
+
+# Launch Jupyter Notebook
+jupyter notebook
+```
 
 ### The Challenge
 **Goal:** Predict the likelihood of malware infection (0 or 1) using system properties.
