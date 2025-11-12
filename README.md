@@ -80,5 +80,8 @@ cd system-threat-forecaster
 - **Explainability:** Use SHAP to analyze feature importance and uncover malware predictors.
 
 ### Why This Matters
-This project is more than code—it’s a stride toward secure systems. I’ve sharpened my skills in data wrangling, feature engineering, and model optimization while addressing a pressing real-world issue. Recruiters, heads up: I’m primed to bring this analytical prowess to your team!
+This project is more than code—it's a stride toward secure systems. I've sharpened my skills in data wrangling, feature engineering, and model optimization while addressing a pressing real-world issue. Recruiters, heads up: I'm primed to bring this analytical prowess to your team!
+
+### Contributing
+Contributions are welcome! Feel free to open issues or submit pull requests to improve this project.
 
