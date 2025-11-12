@@ -24,7 +24,7 @@ jobs:
           ls -la /app
           find /app -name main.py
       - name: Run PR Reviewer
-        run: python /app/src/main.py  # Absolute path inside container
+        run: python /app/src/main.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
