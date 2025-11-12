@@ -21,10 +21,10 @@ jobs:
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-      options: --workdir /app  # 👈 Ensures it runs inside /app even before step
+      options: --workdir /app  # 👈 ensures all commands run inside /app
 
     steps:
-      - name: Run PR Reviewer
+      - name: Run PR Reviewer (from container image)
         run: python src/main.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
