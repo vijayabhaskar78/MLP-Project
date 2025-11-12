@@ -21,7 +21,7 @@ jobs:
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-      options: --volume=""  # disables repository mount
+      # You may keep or remove options: --volume=""
 
     steps:
       - name: Run PR Reviewer
