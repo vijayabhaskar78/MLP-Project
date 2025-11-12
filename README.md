@@ -1,8 +1,12 @@
 ## System Threat Forecaster
-### Can You Forewarn a System Before It’s Compromised?
+### Can You Forewarn a System Before It's Compromised?
+
+[![AI Code Review](https://img.shields.io/badge/AI-Code%20Review-blue)](https://github.com/vijayabhaskar78/MLP-Project)
 
 ### Overview
 Welcome to the System Threat Forecaster, a Machine Learning Project (MLP T12025) from my BS Degree at IIT Madras. This project tackles the critical challenge of predicting whether a system will succumb to malware infections. Using telemetry data from antivirus software, I developed a model to forecast infection probabilities based on system properties. It's an exciting fusion of data science and cybersecurity—ideal for anyone eager to safeguard digital landscapes!
+
+This project now features automated AI-powered code reviews using Groq's LLaMA model to ensure code quality and catch potential issues early.
 
 ### Prerequisites
 Before you begin, ensure you have the following installed:
