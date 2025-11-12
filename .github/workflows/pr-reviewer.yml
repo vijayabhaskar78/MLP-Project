@@ -17,10 +17,9 @@ jobs:
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-      # Optional: Add volumes if needed for custom mounts (e.g., --volume="/host/path:/container/path")
     steps:
       - name: Run PR Reviewer
-        run: python /app/src/main.py  # <-- Key change: Absolute path to container's script
+        run: python /app/src/main.py  # Absolute path to container's script
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
